@@ -5,14 +5,16 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  'assets/recipes/bagels.json',
+  'assets/recipes/eggs.json',
+  'assets/recipes/smore.json'
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
 // data will be added to this object below. You may use whatever you like for the
 // keys as long as it's unique, one suggestion might but the URL itself
 const recipeData = {}
-
 window.addEventListener('DOMContentLoaded', init);
 
 // This is the first function to be called, so when you are tracing your code start here.
@@ -24,6 +26,7 @@ async function init() {
     console.log('Recipe fetch unsuccessful');
     return;
   };
+  console.log(recipeData);
   // Add the first three recipe cards to the page
   createRecipeCards();
   // Make the "Show more" button functional
@@ -43,17 +46,39 @@ async function fetchRecipes() {
     // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
 
     // Part 1 Expose - TODO
+
+    for(let i=0; i<recipes.length; i++){
+      recipeData[recipes[i]] = fetch(recipes[i])
+        .then(res => res.json())
+        .then(function(res) {
+          recipeData[recipes[i]] = res;
+          if(Object.keys(recipeData).length == i+1){
+            resolve(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          reject(false);
+        })
+        // .then(resolve(true))
+    }
   });
 }
 
 function createRecipeCards() {
   // This function is called for you up above.
   // From within this function you can access the recipe data from the JSON 
-  // files with the recipeData Object above. Make sure you only display the 
+  // filestm with the recipeData Object above. Make sure you only display the 
   // three recipes we give you, you'll use the bindShowMore() function to
   // show any others you've added when the user clicks on the "Show more" button.
 
   // Part 1 Expose - TODO
+  for(let i=0; i<recipes.length; i++){
+    let recipeTag = document.createElement("recipe-card");
+    recipeTag.data = recipeData[recipes[i]];
+    let parent = document.querySelector("main");
+    parent.appendChild(recipeTag);
+  }
 }
 
 function bindShowMore() {
@@ -65,4 +90,37 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+
+  document.querySelector('button').addEventListener('click', ()=>{
+    console.log(document.querySelector('button').innerHTML);
+    if(document.querySelector('button').innerHTML == "Show more"){
+        document.querySelector('button').innerHTML = "Show less";
+        document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+    }
+    else{
+      document.querySelector('button').innerHTML = "Show more";
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+    }
+
+    // document.querySelector("div img").setAttribute('src', )
+    // let text = document.getElementById('text-to-speak').value;
+    // // don't open mouth if textarea is empty
+    // if(text == ""){
+    //   return;
+    // }
+  });
+  //   document.getElementById("button-wrapper");
+  //   let text = document.getElementById('text-to-speak').value;
+  //   // don't open mouth if textarea is empty
+  //   if(text == ""){
+  //     return;
+  //   }
+  // };
 }
