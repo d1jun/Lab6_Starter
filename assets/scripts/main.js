@@ -95,32 +95,17 @@ function bindShowMore() {
   document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
 
   document.querySelector('button').addEventListener('click', ()=>{
-    console.log(document.querySelector('button').innerHTML);
     if(document.querySelector('button').innerHTML == "Show more"){
-        document.querySelector('button').innerHTML = "Show less";
-        document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
-  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
-  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+      document.querySelector('button').innerHTML = "Show less";
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'block';
     }
     else{
       document.querySelector('button').innerHTML = "Show more";
       document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
-  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
-  document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
+      document.querySelector('recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card ~ recipe-card').style.display = 'none';
     }
-
-    // document.querySelector("div img").setAttribute('src', )
-    // let text = document.getElementById('text-to-speak').value;
-    // // don't open mouth if textarea is empty
-    // if(text == ""){
-    //   return;
-    // }
   });
-  //   document.getElementById("button-wrapper");
-  //   let text = document.getElementById('text-to-speak').value;
-  //   // don't open mouth if textarea is empty
-  //   if(text == ""){
-  //     return;
-  //   }
-  // };
 }
