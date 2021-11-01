@@ -132,22 +132,22 @@ class RecipeCard extends HTMLElement {
       let numStars = Math.round(parseFloat(searchForKey(data, "ratingValue")));
       let starImage;
       if(numStars == 0){
-        starImage = '/assets/images/icons/0-star.svg';
+        starImage = 'assets/images/icons/0-star.svg';
       }
       if(numStars == 1){
-        starImage = '/assets/images/icons/1-star.svg';
+        starImage = 'assets/images/icons/1-star.svg';
       }
       if(numStars == 2){
-        starImage = '/assets/images/icons/2-star.svg';
+        starImage = 'assets/images/icons/2-star.svg';
       }
       if(numStars == 3){
-        starImage = '/assets/images/icons/3-star.svg';
+        starImage = 'assets/images/icons/3-star.svg';
       }
       if(numStars == 4){
-        starImage = '/assets/images/icons/4-star.svg';
+        starImage = 'assets/images/icons/4-star.svg';
       }
       if(numStars == 5){
-        starImage = '/assets/images/icons/5-star.svg';
+        starImage = 'assets/images/icons/5-star.svg';
       }
       rating.appendChild(document.createTextNode((searchForKey(data, "ratingValue"))));
       let stars = document.createElement('img');
